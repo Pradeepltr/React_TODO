@@ -87,7 +87,7 @@ function Action() {
         {data.map((element) => {
           return (
             <div key={element.id}>
-              <div className="card" Style="width: 23rem;">
+              <div className="card" Style="width: 20rem;">
                 <div className="card-body">
                   <h5 className="card-title">ID : {element.id}</h5>
                   <h6 className="card-subtitle mb-2 text-muted">UserID : {element.userId}</h6>

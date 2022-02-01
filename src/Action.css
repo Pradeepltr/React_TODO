@@ -10,7 +10,7 @@ body{
     flex-direction: row;
     flex-wrap: wrap;
     margin-top: 2rem;
-    margin-left: 2rem;
+    margin-left: .5rem;
     
 }
 /* set font-size of card text */
@@ -21,7 +21,7 @@ body{
    margin-left: 2rem;
    /* margin-right: 2rem; */
    margin-top: 2rem;
-   height: 12rem;
+   height: 14rem;
    background-color: burlywood;
 }
 /* .btn{
