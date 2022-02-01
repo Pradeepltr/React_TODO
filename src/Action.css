@@ -1,6 +1,8 @@
 /* Style for body background */
 body{
     background: linear-gradient(pink,yellow);
+    margin: 0;
+    padding: 0;
 }
 /* Styles for box where all data display */
 .flex{
