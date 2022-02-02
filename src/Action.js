@@ -1,6 +1,7 @@
 // Import required things
-import './Action.css';
+
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import './Action.css';
 import React, { useState, useEffect } from 'react';
 function Action() {
   // datau is set data in API through 'PUT' method (using react hook useState)
@@ -25,6 +26,7 @@ function Action() {
       })
   }, [])
   const getData=(resData)=>{
+    
     setData(resData)
   }
 //  Function for delete handle
@@ -35,11 +37,18 @@ function Action() {
 
     }).then((res) => {
       console.log(res)
+      return res.json();
+    }).then((resdata)=>{
+      console.log(resdata)
     })
+    const newdata=data.filter((elem)=>{
+      return elem.id!=id
+    })
+    setData(newdata);
   }
   // function for apply PUT method
   const UpdateData = (e) => {
-
+    document.getElementById('clearForm').reset();
     e.preventDefault();
 
     fetch(`https://jsonplaceholder.typicode.com/todos/${datau.id}`, {
@@ -56,6 +65,13 @@ function Action() {
     }).then((response) => response.json())
       .then((json) => {console.log(json)
          setMsg('Data update successfully')
+         data[json.id-1]=json;
+        const newdata=data;
+      
+        console.log(newdata);
+        setData([])
+         setData(newdata);
+        
       }
         
       )
@@ -66,6 +82,7 @@ function Action() {
   }
   // Function for apply POST method
   const AddData=(e)=>{
+    document.getElementById('clearForm').reset();
     e.preventDefault();
     fetch('https://jsonplaceholder.typicode.com/todos',{
       method: 'POST',
@@ -81,6 +98,7 @@ function Action() {
     .then((res)=>{ return res.json()})
     .then((resdata)=>{
       console.log(resdata);
+     setData([...data,resdata])
       setMsg('Data Added')
       // setData(resdata)
       // getData(resdata)
@@ -92,7 +110,7 @@ function Action() {
   return (
     <div>
       <div className='FormData' >
-        <form>
+        <form id='clearForm'>
          
           <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">ID</label>
