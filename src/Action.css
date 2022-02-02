@@ -38,3 +38,7 @@ body{
 .form-label{
     font-weight: bold;
 }
+.btn{
+    margin-right: 1rem;
+    margin-top: 1rem;
+}

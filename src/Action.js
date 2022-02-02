@@ -19,9 +19,14 @@ function Action() {
       .then((res) => { return res.json() })
       .then((list) => {
         console.log(list)
-        setData(list)
+        // setData(list)
+        getData(list)
+        
       })
   }, [])
+  const getData=(resData)=>{
+    setData(resData)
+  }
 //  Function for delete handle
   const deleteHandle = (id) => {
     fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
@@ -39,9 +44,11 @@ function Action() {
 
     fetch(`https://jsonplaceholder.typicode.com/todos/${datau.id}`, {
       method: "PUT",
-      body: JSON.stringify(
-        datau
-      ),
+      body: JSON.stringify({
+        id:datau.id,
+        userId:datau.userId,
+        title:datau.title
+      }),
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
       },
@@ -56,6 +63,27 @@ function Action() {
         setMsg('Data not updated')
       })
       
+  }
+  // Function for apply POST method
+  const AddData=(e)=>{
+    e.preventDefault();
+    fetch('https://jsonplaceholder.typicode.com/todos',{
+      method: 'POST',
+      body: JSON.stringify({
+       id:datau.id,
+       userId:datau.userId,
+       title:datau.title
+      }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    })
+    .then((res)=>{ return res.json()})
+    .then((resdata)=>{
+      console.log(resdata);
+      // setData(resdata)
+      // getData(resdata)
+    })
   }
   // JSX return data
   return (
@@ -76,7 +104,8 @@ function Action() {
             <input type="text" className="form-control" onInput={(e) => setDatau({ ...datau, title: e.target.value })} id="exampleInputPassword1" placeholder='title' />
           </div>
 
-          <button type="submit" onClick={UpdateData} className="btn btn-primary">Submit</button>
+          <button type="submit" onClick={UpdateData} className="btn btn-primary">UPDATE</button>
+           <button type="submit" onClick={AddData} className="btn btn-primary">ADD</button>
         </form>
         <h3>{msg}</h3>
       </div>
