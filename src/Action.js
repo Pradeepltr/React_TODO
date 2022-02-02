@@ -81,8 +81,11 @@ function Action() {
     .then((res)=>{ return res.json()})
     .then((resdata)=>{
       console.log(resdata);
+      setMsg('Data Added')
       // setData(resdata)
       // getData(resdata)
+    }).catch((err)=>{
+      setMsg('Data not Added');
     })
   }
   // JSX return data
@@ -90,7 +93,7 @@ function Action() {
     <div>
       <div className='FormData' >
         <form>
-          <h1>Update Data</h1>
+         
           <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">ID</label>
             <input type="txt" className="form-control" onInput={(e) => setDatau({ ...data, id: e.target.value })} id="exampleInputEmail1" aria-describedby="emailHelp" placeholder='id' />
